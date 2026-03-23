@@ -36,7 +36,7 @@ export default function FeaturedWork() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <span className="text-xs font-mono text-purple-400/70 uppercase tracking-widest">Featured project</span>
+          <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">Featured project</span>
           <h2 className="mt-3 text-3xl md:text-4xl font-black text-white">
             Social-One
           </h2>
@@ -53,7 +53,7 @@ export default function FeaturedWork() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-3 card-glow rounded-2xl overflow-hidden bg-[#111111] aspect-video"
           >
-            <div className="relative h-full w-full bg-gradient-to-br from-purple-900/20 via-[#111] to-blue-900/20 flex items-center justify-center">
+            <div className="relative h-full w-full bg-gradient-to-br from-blue-900/20 via-[#111] to-blue-900/10 flex items-center justify-center">
               {/* Mock browser chrome */}
               <div className="absolute top-0 left-0 right-0 h-8 bg-[#0d0d0d] border-b border-white/5 flex items-center gap-2 px-3">
                 <div className="flex gap-1.5">
@@ -80,7 +80,7 @@ export default function FeaturedWork() {
                     </div>
                   ))}
                   <div className="col-span-3 rounded-xl bg-white/[0.03] border border-white/5 p-3 flex items-center gap-2">
-                    <div className="flex-1 h-12 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-cyan-500/20 rounded-lg" />
+                    <div className="flex-1 h-12 bg-gradient-to-r from-blue-500/10 via-blue-500/20 to-blue-500/10 rounded-lg" />
                     <span className="text-[10px] text-white/20 font-mono">90-day growth chart</span>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export default function FeaturedWork() {
               <ul className="space-y-2.5">
                 {highlights.map((h) => (
                   <li key={h} className="flex items-start gap-2.5 text-xs text-white/50 leading-relaxed">
-                    <span className="mt-0.5 text-purple-400 shrink-0">✦</span>
+                    <span className="mt-0.5 text-blue-400 shrink-0">✦</span>
                     {h}
                   </li>
                 ))}
@@ -133,7 +133,7 @@ export default function FeaturedWork() {
               <span className="text-sm font-semibold text-white/70 group-hover:text-white transition-colors">
                 View live demo
               </span>
-              <span className="text-purple-400 group-hover:translate-x-1 transition-transform duration-200">→</span>
+              <span className="text-blue-400 group-hover:translate-x-1 transition-transform duration-200">→</span>
             </a>
           </motion.div>
         </div>

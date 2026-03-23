@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="border-t border-white/5 py-8 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <div className="h-6 w-6 rounded-md bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-[10px] font-black text-white">
+          <div className="h-6 w-6 rounded-md bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-[10px] font-black text-white">
             D
           </div>
           <span className="text-sm text-white/30">Divek Sharma</span>
