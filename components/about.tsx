@@ -1,6 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const stats = [
@@ -17,13 +16,12 @@ export default function About() {
   return (
     <section id="about" className="relative py-32 px-6" ref={ref}>
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Left — text */}
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7 }}
         >
-          <span className="text-xs font-mono text-purple-400/70 uppercase tracking-widest">About</span>
+          <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">About</span>
           <h2 className="mt-3 text-3xl md:text-4xl font-black text-white leading-tight">
             Designer who codes.<br />
             <span className="gradient-text">Developer who designs.</span>
@@ -34,24 +32,19 @@ export default function About() {
               I do both — which means I can take a product from idea to live URL without a handoff gap.
             </p>
             <p>
-              I&apos;ve worked across UX, frontend, and full-stack — at agencies, startups, and on my own products.
-              My latest build, Social-One, is a multi-platform analytics SaaS with AI insights, built entirely solo
-              using modern tooling including <span className="text-purple-400">Claude Code</span> for AI-assisted development.
+              I&apos;ve worked across UX, frontend, and full-stack at agencies, startups, and on my own products.
+              My latest build, Social-One, is a multi-platform analytics SaaS with AI insights — built entirely
+              solo using <span className="text-blue-400">Claude Code</span> for AI-assisted development.
             </p>
-            <p>
-              Currently available for freelance projects — product design, frontend builds, or both.
-            </p>
+            <p>Currently available for freelance projects — product design, frontend builds, or both.</p>
           </div>
-
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="https://www.linkedin.com/in/divek-sharma-0203i5/"
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
               className="neon-button inline-flex items-center gap-2 rounded-xl bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-white/70 hover:text-white transition-all"
             >
-              LinkedIn
-              <span className="text-purple-400">↗</span>
+              LinkedIn <span className="text-blue-400">↗</span>
             </a>
             <a
               href="mailto:diveksharm@gmail.com"
@@ -62,14 +55,12 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Right — stats + photo placeholder */}
         <motion.div
           initial={{ opacity: 0, x: 24 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.1 }}
           className="flex flex-col gap-4"
         >
-          {/* Stats grid */}
           <div className="grid grid-cols-2 gap-3">
             {stats.map((stat, i) => (
               <motion.div
@@ -85,10 +76,9 @@ export default function About() {
             ))}
           </div>
 
-          {/* AI callout card */}
-          <div className="card-glow rounded-2xl bg-[#111111] p-5 border-purple-500/20">
+          <div className="card-glow rounded-2xl bg-[#111111] p-5">
             <div className="flex items-start gap-3">
-              <div className="h-8 w-8 shrink-0 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/20 flex items-center justify-center text-sm">
+              <div className="h-8 w-8 shrink-0 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-sm">
                 ⚡
               </div>
               <div>

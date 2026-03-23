@@ -9,7 +9,7 @@ import Footer from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative w-full overflow-x-hidden">
       <Nav />
       <Hero />
       <Services />
