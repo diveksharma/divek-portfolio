@@ -15,18 +15,27 @@ export default function About() {
 
   return (
     <section id="about" className="relative py-32 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      {/* Section label — centered */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5 }}
+        className="max-w-6xl mx-auto mb-14 text-center"
+      >
+        <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">About</span>
+        <h2 className="mt-3 text-3xl md:text-4xl font-black text-white leading-tight">
+          Designer who codes.<br />
+          <span className="gradient-text">Developer who designs.</span>
+        </h2>
+      </motion.div>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">About</span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-black text-white leading-tight">
-            Designer who codes.<br />
-            <span className="gradient-text">Developer who designs.</span>
-          </h2>
-          <div className="mt-6 space-y-4 text-white/50 leading-relaxed text-sm">
+          <div className="space-y-4 text-white/50 leading-relaxed text-sm">
             <p>
               Most designers hand off Figma files and call it done. Most developers don&apos;t touch design tools.
               I do both — which means I can take a product from idea to live URL without a handoff gap.

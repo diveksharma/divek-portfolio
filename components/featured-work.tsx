@@ -1,7 +1,7 @@
 "use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 
 const highlights = [
   "Multi-platform OAuth (YouTube, TikTok, Instagram, Facebook) with encrypted token storage",
@@ -30,17 +30,16 @@ export default function FeaturedWork() {
       </div>
 
       <div className="relative max-w-6xl mx-auto">
+        {/* Section header — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
           <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">Featured project</span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-black text-white">
-            Social-One
-          </h2>
-          <p className="mt-3 text-white/40 max-w-lg">
+          <h2 className="mt-3 text-3xl md:text-4xl font-black text-white">Social-One</h2>
+          <p className="mt-3 text-white/40 max-w-lg mx-auto">
             A full-stack social media analytics platform. Built solo, from database schema to deployed product.
           </p>
         </motion.div>
@@ -123,20 +122,46 @@ export default function FeaturedWork() {
               </div>
             </div>
 
-            {/* CTA */}
-            <a
-              href="https://social-one-demo-at6ue0wxl-diveksharmas-projects.vercel.app/dashboard"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="neon-button rounded-2xl bg-white/[0.02] p-4 flex items-center justify-between group"
-            >
-              <span className="text-sm font-semibold text-white/70 group-hover:text-white transition-colors">
-                View live demo
-              </span>
-              <span className="text-blue-400 group-hover:translate-x-1 transition-transform duration-200">→</span>
-            </a>
+            {/* CTAs */}
+            <div className="flex gap-3">
+              <a
+                href="https://social-one-demo-at6ue0wxl-diveksharmas-projects.vercel.app/dashboard"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 neon-button rounded-2xl bg-white/[0.02] p-4 flex items-center justify-between group"
+              >
+                <span className="text-sm font-semibold text-white/70 group-hover:text-white transition-colors">
+                  Live demo
+                </span>
+                <span className="text-blue-400 group-hover:translate-x-1 transition-transform duration-200">→</span>
+              </a>
+              <Link
+                href="/projects"
+                className="flex-1 rounded-2xl border border-white/8 bg-white/[0.02] p-4 flex items-center justify-between group hover:border-white/15 transition-all"
+              >
+                <span className="text-sm font-semibold text-white/50 group-hover:text-white/80 transition-colors">
+                  Case study
+                </span>
+                <span className="text-white/30 group-hover:translate-x-1 group-hover:text-white/60 transition-all duration-200">→</span>
+              </Link>
+            </div>
           </motion.div>
         </div>
+
+        {/* View all projects */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors font-mono"
+          >
+            View all projects <span className="text-blue-400">↗</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

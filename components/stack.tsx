@@ -17,26 +17,30 @@ export default function Stack() {
   return (
     <section className="relative py-32 px-6" ref={ref}>
       <div className="max-w-6xl mx-auto">
+        {/* Section header — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-14"
+          className="mb-14 text-center"
         >
           <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">Tech</span>
           <h2 className="mt-3 text-3xl md:text-4xl font-black text-white">Stack & tools</h2>
+          <p className="mt-3 text-white/40 max-w-lg mx-auto">
+            Tools I reach for to take a product from idea to live URL.
+          </p>
         </motion.div>
 
-        <div className="space-y-5">
+        <div className="space-y-4 max-w-4xl mx-auto">
           {categories.map((cat, ci) => (
             <motion.div
               key={cat.label}
               initial={{ opacity: 0, x: -16 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: ci * 0.08 }}
-              className="flex flex-col sm:flex-row sm:items-center gap-3"
+              className="flex flex-col sm:flex-row sm:items-center gap-3 py-3 border-b border-white/[0.04] last:border-0"
             >
-              <span className="text-xs font-mono font-bold uppercase tracking-widest w-28 shrink-0 text-blue-400/80">
+              <span className="text-xs font-mono font-bold uppercase tracking-widest w-32 shrink-0 text-blue-400/80">
                 {cat.label}
               </span>
               <div className="flex flex-wrap gap-2">

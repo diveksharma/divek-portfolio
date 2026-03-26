@@ -1,7 +1,20 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const links = [
+  { label: "Work", href: "/#work" },
+  { label: "Services", href: "/#services" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/#contact" },
+];
 
 export default function Nav() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -16 }}
@@ -11,23 +24,28 @@ export default function Nav() {
     >
       <div className="absolute inset-0 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5" />
 
-      <div className="relative flex items-center gap-2">
+      <Link href="/" className="relative flex items-center gap-2">
         <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-xs font-black text-white">
           D
         </div>
         <span className="text-sm font-semibold text-white/80">Divek Sharma</span>
-      </div>
+      </Link>
 
       <div className="relative hidden md:flex items-center gap-8">
-        {["Work", "Services", "About", "Contact"].map((item) => (
-          <a
-            key={item}
-            href={`#${item.toLowerCase()}`}
-            className="text-sm text-white/50 hover:text-white/90 transition-colors duration-200"
-          >
-            {item}
-          </a>
-        ))}
+        {links.map((link) => {
+          const isActive = link.href === "/projects" && pathname === "/projects";
+          return (
+            <Link
+              key={link.label}
+              href={link.href}
+              className={`text-sm transition-colors duration-200 ${
+                isActive ? "text-white" : "text-white/50 hover:text-white/90"
+              }`}
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </div>
 
       <div className="relative">

@@ -36,15 +36,16 @@ export default function Services() {
   return (
     <section id="services" className="relative py-32 px-6" ref={ref}>
       <div className="max-w-6xl mx-auto">
+        {/* Section header — centered */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
           <span className="text-xs font-mono text-blue-400/70 uppercase tracking-widest">What I do</span>
           <h2 className="mt-3 text-3xl md:text-4xl font-black text-white">Services</h2>
-          <p className="mt-3 text-white/40 max-w-lg">
+          <p className="mt-3 text-white/40 max-w-lg mx-auto">
             I sit at the intersection of design and engineering — rare enough that clients notice.
           </p>
         </motion.div>
