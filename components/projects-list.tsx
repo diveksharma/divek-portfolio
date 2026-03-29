@@ -1,6 +1,59 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
+
+const screenshots = [
+  {
+    file: "/screenshots/social-one/01-dashboard-overview.png",
+    label: "Overview",
+    title: "Cross-Platform Dashboard",
+    description:
+      "A single view of 107.7K total followers, 403 posts, and 90-day growth across all 4 platforms. The AI Insights panel surfaces actionable findings on demand — no manual data-wrangling required.",
+  },
+  {
+    file: "/screenshots/social-one/02-dashboard-youtube.png",
+    label: "YouTube",
+    title: "YouTube Analytics",
+    description:
+      "53.1K subscribers and 5.5M lifetime views broken down by video. Each bar represents an individual upload — instantly spot which content drove spikes and which underperformed.",
+  },
+  {
+    file: "/screenshots/social-one/03-dashboard-tiktok.png",
+    label: "TikTok",
+    title: "TikTok Performance",
+    description:
+      "38.9K followers and 724K total likes charted over time in TikTok's brand turquoise. Video-level data reveals engagement velocity and the best time to post next.",
+  },
+  {
+    file: "/screenshots/social-one/04-dashboard-instagram.png",
+    label: "Instagram",
+    title: "Instagram Engagement",
+    description:
+      "15.7K followers with a per-post like timeline that shows content cadence patterns at a glance. Saves, shares, and reach are captured alongside standard engagement counts.",
+  },
+  {
+    file: "/screenshots/social-one/05-dashboard-facebook.png",
+    label: "Facebook",
+    title: "Facebook Page Insights",
+    description:
+      "35.8K page fans, 32K followers, and 19.1K impressions tracked daily. Boosted-post windows stand out as clear spikes — making ad ROI immediately visible.",
+  },
+  {
+    file: "/screenshots/social-one/06-analytics.png",
+    label: "Analytics",
+    title: "Deep-Dive Analytics",
+    description:
+      "A dedicated analytics page with four charts: per-platform engagement rate, a composite Platform Health Score, a Content Velocity stacked bar, and a Total Reach donut. All four update in sync with the selected date range.",
+  },
+  {
+    file: "/screenshots/social-one/07-analytics-growth.png",
+    label: "Growth",
+    title: "Growth Correlation",
+    description:
+      "All four platforms overlaid on a single chart to reveal cross-platform lift patterns — when a TikTok video goes viral, does YouTube grow too? This view answers that instantly.",
+  },
+];
 
 const projects = [
   {
@@ -19,24 +72,9 @@ const projects = [
       "90-day seeded demo with realistic data across 4 platforms",
     ],
     stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Supabase", "Anthropic API", "Claude Code", "Vercel"],
-    liveUrl: "https://social-one-demo-at6ue0wxl-diveksharmas-projects.vercel.app/dashboard",
+    liveUrl: "https://social-one-demo.vercel.app",
     year: "2025–2026",
     role: "Design + Engineering",
-    // Dashboard mockup data
-    mockup: {
-      stats: [
-        { label: "Followers", val: "248K", delta: "+12.4%" },
-        { label: "Engagement", val: "4.8%", delta: "+0.6%" },
-        { label: "Posts (30d)", val: "142", delta: "+18" },
-        { label: "Reach", val: "1.2M", delta: "+22%" },
-      ],
-      platforms: [
-        { name: "YouTube", pct: 72 },
-        { name: "TikTok", pct: 58 },
-        { name: "Instagram", pct: 85 },
-        { name: "Facebook", pct: 44 },
-      ],
-    },
   },
 ];
 
@@ -45,76 +83,79 @@ const comingSoon = [
   { name: "Agency work", tag: "UI/UX · Frontend", teaser: "Product redesign — details coming soon." },
 ];
 
-function DashboardMockup({ data }: { data: typeof projects[0]["mockup"] }) {
+function ScreenshotShowcase() {
+  const [active, setActive] = useState(0);
+  const current = screenshots[active];
+
   return (
     <div className="rounded-2xl border border-white/10 bg-[#111111] overflow-hidden shadow-2xl shadow-black/60">
-      {/* Browser bar */}
+      {/* Browser chrome */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-white/5 bg-[#0d0d0d]">
         <div className="flex gap-1.5">
-          {[0, 1, 2].map((i) => <div key={i} className="h-3 w-3 rounded-full bg-white/10" />)}
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="h-3 w-3 rounded-full bg-white/10" />
+          ))}
         </div>
         <div className="flex-1 h-6 rounded-md bg-white/5 flex items-center px-3">
           <span className="text-[11px] text-white/20 font-mono">social-one-demo.vercel.app/dashboard</span>
         </div>
       </div>
 
-      {/* Dashboard content */}
-      <div className="p-4 space-y-3">
-        {/* Stats row */}
-        <div className="grid grid-cols-4 gap-3">
-          {data.stats.map((s) => (
-            <div key={s.label} className="rounded-xl bg-white/[0.03] border border-white/5 p-3">
-              <p className="text-[10px] text-white/30 font-mono">{s.label}</p>
-              <p className="mt-1 text-lg font-black text-white">{s.val}</p>
-              <p className="text-[10px] text-green-400 font-mono">{s.delta}</p>
-            </div>
-          ))}
-        </div>
+      {/* Tab strip */}
+      <div className="flex gap-1 px-4 pt-3 pb-0 overflow-x-auto scrollbar-none">
+        {screenshots.map((s, i) => (
+          <button
+            key={s.label}
+            onClick={() => setActive(i)}
+            className={`shrink-0 rounded-t-lg px-3.5 py-1.5 text-[11px] font-mono transition-all ${
+              active === i
+                ? "bg-white/8 text-white border border-white/10 border-b-[#111111]"
+                : "text-white/30 hover:text-white/60"
+            }`}
+          >
+            <span className="mr-1.5 opacity-50">{i + 1}.</span>
+            {s.label}
+          </button>
+        ))}
+      </div>
 
-        {/* Growth chart */}
-        <div className="rounded-xl bg-white/[0.03] border border-white/5 p-4">
-          <p className="text-[10px] text-white/30 font-mono mb-3">90-day follower growth</p>
-          <div className="h-20 flex items-end gap-0.5">
-            {Array.from({ length: 42 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex-1 rounded-sm bg-blue-500/40"
-                style={{ height: `${25 + Math.sin(i * 0.35) * 18 + i * 1.1}%` }}
-              />
-            ))}
-          </div>
-        </div>
+      {/* Screenshot */}
+      <div className="relative w-full aspect-[16/10] bg-[#0a0a0a] overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={current.file}
+              alt={current.title}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              priority={active === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-        {/* Bottom row */}
-        <div className="grid grid-cols-2 gap-3">
-          {/* Platforms */}
-          <div className="rounded-xl bg-white/[0.03] border border-white/5 p-3">
-            <p className="text-[10px] text-white/30 font-mono mb-2">Platforms</p>
-            {data.platforms.map((p) => (
-              <div key={p.name} className="flex items-center justify-between py-1">
-                <span className="text-[11px] text-white/40">{p.name}</span>
-                <div className="h-1.5 w-20 rounded-full bg-white/5 overflow-hidden">
-                  <div className="h-full bg-blue-500/50 rounded-full" style={{ width: `${p.pct}%` }} />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* AI Profile */}
-          <div className="rounded-xl bg-white/[0.03] border border-white/5 p-3">
-            <p className="text-[10px] text-white/30 font-mono mb-2">AI Content Profile</p>
-            <p className="text-[11px] text-white/40 leading-relaxed">
-              Creator · Lifestyle &amp; Tech · Growing audience aged 18–34 across 4 platforms.
-            </p>
-            <div className="mt-2 flex gap-1 flex-wrap">
-              {["Educational", "Behind-scenes", "Trending"].map((t) => (
-                <span key={t} className="rounded border border-blue-500/20 bg-blue-500/5 px-1.5 py-0.5 text-[10px] text-blue-400/70 font-mono">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+      {/* Caption */}
+      <div className="px-5 py-4 border-t border-white/5 bg-[#0d0d0d]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.2 }}
+          >
+            <p className="text-sm font-semibold text-white/80 mb-1">{current.title}</p>
+            <p className="text-[13px] text-white/40 leading-relaxed max-w-3xl">{current.description}</p>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -162,14 +203,14 @@ export default function ProjectsList() {
               </div>
             </div>
 
-            {/* Dashboard mockup — full width */}
+            {/* Screenshot showcase — full width */}
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.15 }}
               className="mb-12"
             >
-              <DashboardMockup data={project.mockup} />
+              <ScreenshotShowcase />
             </motion.div>
 
             {/* Meta row */}
